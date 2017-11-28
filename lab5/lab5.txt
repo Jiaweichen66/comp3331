@@ -1,0 +1,22 @@
+Lab 5
+
+Exercise 1
+1. The maximum size of the congestion window is 100. When the congestion window reaches this value, there is a timeout and the congestion window returns to its starting value. The tcp flow then commences slow start which increases at an exponential rate until reaching ssthresh which is now halve of the inital ssthresh. After the congestion window reaches this number it begins increasing the window at a linear rate. This is known as congestion avoidance.
+
+2. From the graph when running the command gnuplot WindowTPut.plot the average throughput is approximately 190 packets/sec
+
+3. When changing the max congestion window the throughput graph still remains the same. The maximum congestion window when througput is stable is 50. The average throughput at this point is approximately 230 packets/sec. If each packet is 540 bytes and 230 packs are transmitted in 1 second then the total bytes transmitted in 1 second is 124200. Comparing this to the link capacity of 1000000 bps. Only 12.42% of the link capacity is used.
+
+4. The differences in TCP Tahoe and Reno is the amount of times the congestion window goes back to zero. In TCP Tahoe, the congestion window is reset to zero seven times, whereas in TCP Reno only resets to congestion window once. The average throughput therefore for TCP Reno would be higher as the congestion window is not set to zero as much as TCP Tahoe. This is evident in the graph as the average throughput for Tahoe is approx 130 packets/sec while Reno is 200 packets/sec
+
+Exercise 2
+1. I think that TCP is reasonably fair. In the graph of fairness_pps each flow shares an approximate equal amount if the common link. However they all do not have to exact amount of throughput, rather each flow fluctuates around an equal share of throughput.
+
+2. When new flows are creates the existing TCP flows experience a decrease in throughput to account for a demand of throughput from other flows. I think that this behaviour is fair as it accounts for all tcp flows and treats them equally. The TCP mechanism that contributes to this behaviour is AIMD. This is additive increase and multiplicative decrease. By using this strategy, the throughput of flows on a common link will average to 1/N packets/sec for each flow if N number of TCP session share a link. 
+
+Exercise 3
+1. I expect the TCP flow will experience less throughput than the UDP flow as TCP tries to implement congestion control and hence the loss of packets, while UDP does not. 
+
+2. The UDP flow experiences higher throughput than the TCP flow due to the congestion control of TCP as well as TCP fairness. For TCP the mechanism that forces the throughput to stabilise is AIMD which is additive increase and multicative decrease. This means that the throughput will converge to the 1/N packets/sec where N is the number of TCP sessions on a link.  
+ 
+

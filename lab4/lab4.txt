@@ -1,0 +1,68 @@
+
+1. The IP address of the client computer is 192.168.1.102 and the TCP port number is 1161.
+
+2. The IP address of gaia.cs.umass.edu is 127.119.245.12. It is sending and receiving TCP segments on port 80. 
+
+3. The sequence number of the TCP SYN segment that is used to initate the TCP connection is 232129012. This segment is a SYN segment as the SYN flag is set in the header of the TCP segment. 
+
+4. The sequence number of the SYN-ACK is 883061785. The ACK value is 232129013. Gaia.cs.umass.edu determined this value by using the sequence number of the lastest packet received and adding 1. This means that gaia.cs.umass.edu is expecting the next packet. This segment is a SYNACK segment as both the Acknowldgement and Syn flags are set in the header of the TCP segment.
+
+5. The sequence number of the ACK segment is 232129013. The ACK value is 883061786. The segment does not contain any data as specified by the TCP segment length being 0. This segment is an ACK segment as the Acknowledgment flag is set in the header of the TCP segment.
+
+6. The sequence number of the TCP segment containing the HTTP POST command is 232129013
+
+7. Note: (All packets were sent and receiving on 21/07/04)
+
+Sequence number of 1st segment: 232129013 
+sent at: 			23:44:20.596858
+Ack received at:	23:44:20.624318
+RTT = 			27.46ms
+EstimatedRTT =	27.46ms 
+
+Sequence number of 2nd segment:	232129578 
+sent at: 			23:44:20.612118
+Ack received at:	23:44:20.647675
+RTT = 			35.557ms
+EstimatedRTT =	28.472ms (3dp) 
+
+Sequence number of 3rd segment:	232131038 
+sent at: 			23:44:20.624407
+Ack received at:	23:44:20.694466
+RTT = 			70.059ms
+EstimatedRTT =	33.670ms (3dp)
+
+Sequence number of 4th segment:	232132498 
+sent at: 			23:44:20.625071
+Ack received at:	23:44:20.739499
+RTT = 			114.428ms
+EstimatedRTT =	 43.765ms (3dp)
+
+Sequence number of 5th segment:	232133958 
+sent at:			23:44:20.647786
+Ack received at:	23:44:20.787680
+RTT = 			139.894ms
+EstimatedRTT =	 55.781ms (3dp) 
+
+Sequence number of 6th segment:	232135418 
+sent at: 			23:44:20.648538
+Ack received at:	23:44:20.838183
+RTT = 			189.645ms
+EstimatedRTT =	 72.514ms (3dp) 
+
+8. Length of 1st segment: 619 bytes
+Length of 2nd segment: 1460 bytes
+Length of 3rd segment: 1460 bytes
+Length of 4th segment: 1460 bytes
+Length of 5th segment: 1460 bytes
+Length of 6th segment: 1460 bytes
+
+
+9. The minimum amount of available buffer space advertised by the receiver is 5840 bytes, which is the window size. This grows to a maximum of 62780 bytes as seen in the last ACK sent by the receiver. By inspecting the trace, the window size is never reduced, therefore the lack of receiver buffer space does not throttle the sender.
+
+10. There are no retransmitted segments in the trace file. This can be verified through the TCP time-sequence graph (Stevens). The sequence numbers of the segments between the source and destination increase at a constant rate over time. This indicates that no segments have to be re-sent, therefore producing the same sequence number for multiple segments.
+
+11. The difference between the acknowledged sequence numbers of two consecutive ACKs indicates the data received by the server between these two ACKs. By inspecting the amount of acknowledged data by each ACK, there are cases where the receiver is ACKing every other segment. E.g. segment 80 acknowledges data with 2920 bytes = 1460 * 2 bytes.
+
+12. Throughput = data sent/transmission time. The total amount of data sent is the sequence number of the last ack segment minus the first TCP segment. Therefore 232293103 - 232129013 = 164090 bytes. The transmission time is the difference in time between the the first TCP segment and the last ack segment. Therefore 5.45583 - 0.026477 = 5.4294 seconds. The throughput is hence 164090/5.4294 = 30222.49236 bytes/sec.
+
+

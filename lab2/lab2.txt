@@ -1,0 +1,53 @@
+Lab 2
+
+Exercise 1 (not marked)
+
+1. 
+Content type: text/html
+Size of reponse: 6966
+Last modified: 5/8/17 (current date 11/8/17)
+Accept-Range: bytes (used for the size of Content-length field??)
+
+2. 
+Content type: text/html
+Size of reponse: 6966
+
+3. 
+
+
+
+Exercise 3
+
+1. 
+The status code was 200 and the phrase returned is OK to the client browser
+
+2.
+The DATE: header is the date of the request and the Last-Modified: header is the date that the website was last changed
+
+3. 
+The connection is persistent due to the fact that we are using HTTP/1.1 however there is a timeout period of 10 seconds with a max of 100 seconds
+
+4. 
+73 bytes
+
+5.
+The data contained in the HTTP reponse packet is text/html
+
+
+Exercise 4
+
+1. 
+There is no IF-MODIFIED-SINCE header with a date.
+
+2. 
+The response indicates that the website was last modified on 23/9/03
+
+3. 
+There is a IF-MODIFIED-SINCE header that has the date 23/9/03
+
+4.
+The code was 304 and phrase was NOT MODIFIED. The reponse did not return the contents of the file since the request asked to GET the webpage if it was modified after the date given. Since the website was not modified the reponse simply returned "NOT MODIFIED"
+
+ 
+
+
