@@ -1,0 +1,93 @@
+Lab4 questions
+
+Mutiple Choice
+
+1. Four types of delays encountered in packet switched networks
+
+a. Nodal processing
+b. Queueing delay
+c. Transmission delay
+d. Propagation delay
+
+2. 
+a. Utilizing HTTP/1.0 with no parallel connection capability, the number of RTTs required to download the page is 8. (2 RTT to initialise, and 2 for each image) 
+b. Utilizing the default mode on HTTP/1.1, 3 RTTs are required to download the page. (2 RTT for initiating and downloading index file, 1 RTT for getting 3 images. Pipelining is used so 3 requests for images are sent at the same time)
+
+3. DNS responses have a TTL field. Why is this necessary?
+
+The TTL field causes DNS servers to delete entries after some time. so that if the host moves and the underlying address changes, the server will eventually get the correct address.
+
+4. Transport layer may be able to provide reliability by using its own mechanisms, despite working over an reliable network layer.
+
+True (TCP can be used for reliable transfer of files)
+
+5. UDP has which of the following characteristics:
+
+d. None of the above
+
+Problem solving
+
+1. 
+Transmission delay = 10,000 bits/ 1 Mbs = 10ms (Packet size/Transmission Speed)
+Propagation delay = 5 x 10^3 / 2.5 x 10^8 = 0.02ms (Physical link length/Propagation speed)
+Processing delay = 10ms
+
+Therefore delay = 20.02ms x 5 = 100.10ms (mutiplied by 5 as there are 5 hops between source and destination)
+
+2. UDP and TCP use 1s complement for their checksums. Suppose you have the following three 8-bit bytes: 01010101, 01110000, 01001100. What is the 1’s complement of the sum of these 8-bit bytes? (Note although TCP and UDP use 16-bit words in computing the checksum, for this problem we will only consider 8-bit summands). Show all work. Is it possible that a 1-bit error will go undetected by the checksum? How about a two-bit error?.
+
+01010101
+01110000 +
+________
+11000101
+01001100 +
+________
+00010001
+00000001 +
+________
+00010010
+
+1's compliment is 11101101
+
+Therefore 
+
+00010010
+11101101 +
+________
+11111111
+
+1-bit error will be detected. 2-bit can go undetected if bits in specific places flip and still give the same result
+
+3. Answer these questions in a concise manner. A few sentences (2-3) should suffice.
+
+(a) List one advantage and one disadvantage of using a text-based header (as in HTTP) instead of a binary format (as in IP and TCP).
+
+Advantage: Easier to read for humans, therefore easier to debug
+Disadvantage: Takes up more bandwidth to process.
+
+(b) Web caches and content distribution networks (CDNs) both reduce the time for a client to download Web pages by moving content closer to the users. Give two reasons why CDNs have been more widely deployed (and successful) than Web caching?
+
+Content providers can serve more users using CDNs are they help distribute content around the world, allowing easier access. 
+
+(c) Why is BitTorrent vulnerable to incomplete downloads (i.e., instances where a few chunks may be missing from the file)? What steps are taken to minimize the possibility of this happening?
+
+P2P applications are peers based where each peer sends and receives chunks of data of a particular file. BitTorrent is vunerable to incomplete downloads as a peer can stop sending chunks at any time. Some steps taken to minimise the possibility of this happening is the rarest first chunk policy and optimising unchoke policy. These help to distribute packets between peers more efficiently so that peers can receive whole file downloads.
+
+5. Consider the circular DHT with shortcuts in Figure below, where each node in the DHT also keeps track of (i) its immediate predecessor, (ii) its immediate successor, and (iii) its second successor (i.e., the successor of the node’s immediate successor).
+
+a. Suppose that peer 1 wants to learn where file with content ID 9 is stored. Write down the sequence of DHT protocol messages that the nodes exchange until peer 1 discovers the location of the file.
+
+Peer 1 -> Peer 4 -> Peer 8 -> Peer 10
+
+b. Suppose that peer 3 learns that peer 5 has left. How does peer 3 update its successor state information?
+
+
+
+c. Now consider that the DHT nodes do not keep track of their second successor (the figure should look like lecture notes with a simple circular DHT). Suppose that a new peer 6 wants to join the DHT and peer 6 initially only knows the IP address of peer 15. What steps are taken?
+
+Peer 6 -> (join request) Peer 15 -> (join request peer 6) Peer 1 -> .... Peer 4 (join request peer 6) Peer 5.
+
+5.  Salil wants to watch a live stream of a UEFA soccer game using the VLC video player. He opens VLC and points it to vid1.streaming.uefa.com. The VLC player calls gethostbyname() with the given name to obtain the IP address of the server. As a result, of the gethostbyname() call, the local DNS client in Salil’s machine contacts his local DNS server to translate the host name to an IP address. The local DNS server performs an iterative lookup. The table below contains the DNS entries with each row corresponding to a DNS record. The entries are grouped by the DNS server in  which they are stored. For example, R1 and R2 are stored in the local DNS server (localdns.localdomain.com), R3 and R4 are stored in the E root server, and so on.
+
+
+
